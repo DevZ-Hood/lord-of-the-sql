@@ -18,40 +18,32 @@ SELECT * FROM Bilbos_Departure
 --- `PrancingPony -----------
 
 -- Insert Hobbits into PracingPony_room5 
-
-
-
+CREATE TABLE PracingPonyRoom3 (Bed int, character varchar(30))
+SELECT * FROM PracingPonyRoom5
+INSERT INTO PracingPonyRoom3 (Bed, character) VALUES (4, 'Sam');
+INSERT INTO PracingPonyRoom5 (Bed, character) VALUES (4, NULL);
 ------------------------------------------------------------
-
--- CREATE TABLE PracingPony_room5 (Bed int, character varchar(30))
-INSERT INTO PracingPony_room5 (Bed, character) VALUES (1, NULL);
-INSERT INTO PracingPony_room5 (Bed, character) VALUES (2, NULL);
-INSERT INTO PracingPony_room5 (Bed, character) VALUES (3, NULL);
-INSERT INTO PracingPony_room5 (Bed, character) VALUES (4, NULL);
-
--- SELECT * FROM PracingPony_room5
--- DELETE FROM PracingPony_room5
 --- Default
-INSERT INTO PracingPony_room5 (Bed, character)
-SELECT character, Bed FROM PracingPony_room3 WHERE Bed = 4
+INSERT INTO PracingPonyRoom5 (Bed, character)
+SELECT character, Bed FROM PracingPonyRoom3 WHERE Bed = 4
 
-UPDATE PracingPony_room3....
+UPDATE PracingPonyRoom3....
 
 --- Option 2
 
-UPDATE PracingPony_room5
+UPDATE PracingPonyRoom5
 SET character = (
-    SELECT character FROM PracingPony_room3
-    WHERE PracingPony_room5.Bed = PracingPony_room3.Bed
+    SELECT character FROM PracingPonyRoom3
+    WHERE PracingPonyRoom5.Bed = PracingPonyRoom3.Bed
 )
 
 --- Hard One
 UPDATE room5 
 SET 
 room5.character = room3.character
-FROM PracingPony_room5 AS room5
+FROM PracingPonyRoom5 AS room5
 JOIN 
-PracingPony_room3 AS room3
+PracingPonyRoom3 AS room3
 ON room5.Bed = room3.Bed
 
 
