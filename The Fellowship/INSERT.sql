@@ -9,7 +9,7 @@ INSERT INTO Test (test) VALUES ("pipoca");
 
 
 ------------------------------------------------------------
---- `Wind Hill (Heal Frodo) -----------
+--- Bilbo`s birthday -----------
 ------------------------------------------------------------
 
 SELECT * FROM Bilbos_Departure
@@ -78,9 +78,11 @@ SELECT * FROM Test;
 --- The Fellowship -----------
 ------------------------------------------------------------
 
-
-CREATE TABLE TheFellowship (Member1 varchar(30), Member2 varchar(30), Member3 varchar(30), Member4 varchar(30), Member5 varchar(30))
-ALTER TABLE TheFellowship ADD Destiny varchar(30) NULL,  Mission varchar(30) NULL, Power int NOT NULL
+CREATE TABLE TheFellowship 
+(Member1 varchar(30), Member2 varchar(30), Member3 varchar(30), Member4 varchar(30), 
+Member5 varchar(30), Destiny varchar(30),  Mission varchar(30), Power Int)
+-- Check ALTER TABLE
+ALTER TABLE TheFellowship ADD Destiny varchar(30) ' ',  Mission varchar(30) ' ';
 
 ------------------------------------------------------------
 --- Traverse Stopped By Saruman -----------
@@ -109,5 +111,35 @@ LIKE '%jibcdiuvd'
 
 ------------------------------------------------------------
 --- Thurin-----------
+
+CREATE TABLE ThurinsEnimies (race VARCHAR(30), Power Int)
+SELECT * FROM ThurinsEnimies
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Regular Orc', 1);
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Regular Orc', 2);
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Regular Orc', 2);
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Regular Orc', 2);
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Regular Orc', 1);
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Regular Orc', 2);
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Regular Orc', 2);
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Regular Orc', 1);
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Regular Orc', 1);
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Regular Orc', 1);
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Regular Orc', 2);
+
+INSERT INTO ThurinsEnimies (Race, Power) VALUES ('Troll ', 9);
 ------------------------------------------------------------
+
+--1: Count  number of Enimies 
+SELECT COUNT (*) FROM ThurinsEnimies
+--2: 
+--SELECT SUM (Power) FROM ThurinsEnimies
+
+SELECT * FROM (
+SELECT *  from ThurinsEnimies UNION SELECT * FROM ThurinsEnimies
+)
+
+CREATE TEMP TABLE ComparePower (Type VARCHAR(30), Power Int);
+INSERT INTO ComparePower (type, Power) VALUES ('Enimies', SELECT SUM (Power) FROM ThurinsEnimies);
+INSERT INTO ComparePower (type, Power) VALUES ('The Fellowship', SELECT SUM (Power) FROM ThurinsEnimies);
+SELECT * FROM ComparePower;
 
