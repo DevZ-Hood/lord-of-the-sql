@@ -80,7 +80,7 @@ SELECT * FROM Test;
 
 
 CREATE TABLE TheFellowship (Member1 varchar(30), Member2 varchar(30), Member3 varchar(30), Member4 varchar(30), Member5 varchar(30))
-ALTER TABLE TheFellowship ADD Destiny varchar(30) ' ',  Mission varchar(30) ' '
+ALTER TABLE TheFellowship ADD Destiny varchar(30) NULL,  Mission varchar(30) NULL, Power int NOT NULL
 
 ------------------------------------------------------------
 --- Traverse Stopped By Saruman -----------
@@ -100,7 +100,7 @@ INSERT INTO PathsToMordor (name, RevisionDate, Status, isBlock) VALUES ('Minas M
 CREATE TABLE DurinsDoor (Status INT, Password VARCHAR(128) NULL)
 ------------------------------------------------------------
 
----
+--- In Progress 
 SELECT * FROM DurinsDoor
 INSERT INTO DurinsDoor (STATUS, Password) VALUES ('CLOSED', 'jibcdiuvd-jcjdbuvcyud-njbdu-xdcd')
 LIKE '%jibcdiuvd'
