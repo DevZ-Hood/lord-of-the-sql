@@ -49,32 +49,30 @@ ON room5.Bed = room3.Bed
 
 ------------------------------------------------------------
 --- `Wind Hill (Heal Frodo) -----------
+
+CREATE TABLE NaturalItems (name VARCHAR(50), type VARCHAR(50), location VARCHAR(50), ElficReference VARCHAR(100))
+INSERT INTO NaturalItems (name, type, location, ElficReference) VALUES ('Lagrima de Bode', 'medicine', 'Tirharad', 'cmuybc');
+INSERT INTO NaturalItems (name, type, location, ElficReference) VALUES ('Figado de lambari', 'Food', 'Trevamata', 'mkund');
+INSERT INTO NaturalItems (name, type, location, ElficReference) VALUES ('Casco de unicornio', 'merchandise', 'Utumno', 'dpikm');
+INSERT INTO NaturalItems (name, type, location, ElficReference) VALUES ('Erva do Rei', 'medicine', 'Tirharad', 'mucud');
+INSERT INTO NaturalItems (name, type, location, ElficReference) VALUES ('Restos de baleia', 'clothing', 'Ithilien', 'mucud');
+
+CREATE TABLE NaturalItensProperties (ElficReference VARCHAR(255), Effect VARCHAR(255), Duration_Hrs Float)
+INSERT INTO NaturalItensProperties (ElficReference, Effect, Duration_Hrs) VALUES ('yehdnjo', 'Cura para ferimentos profundos', 2.0);
+INSERT INTO NaturalItensProperties (ElficReference, Effect, Duration_Hrs) VALUES ('mucud', 'Cura para ferimentos Leves', 1.3);
 ------------------------------------------------------------
-
--- CREATE TABLE NaturalItems (name VARCHAR(50), type VARCHAR(50), location VARCHAR(50), ElficReference VARCHAR(100))
--- SELECT * FROM NaturalItems
--- DROP TABLE NaturalItems
-
--- INSERT INTO NaturalItems (name, type, location, ElficReference) VALUES ('Lagrima de Bode', 'medicine', 'Tirharad', 'cmuybc');
--- INSERT INTO NaturalItems (name, type, location, ElficReference) VALUES ('Figado de lambari', 'Food', 'Trevamata', 'mkund');
--- INSERT INTO NaturalItems (name, type, location, ElficReference) VALUES ('Casco de unicornio', 'merchandise', 'Utumno', 'dpikm');
--- INSERT INTO NaturalItems (name, type, location, ElficReference) VALUES ('Erva do Rei', 'medicine', 'Tirharad', 'mucud');
--- INSERT INTO NaturalItems (name, type, location, ElficReference) VALUES ('Restos de baleia', 'clothing', 'Ithilien', 'mucud');
-
-
-
--- CREATE TABLE NaturalMedicinesProperties (ElficReference VARCHAR(255), Effect VARCHAR(255), Duration_Hrs Float)
--- SELECT * FROM NaturalMedicinesProperties
--- INSERT INTO NaturalMedicinesProperties (ElficReference, Effect, Duration_Hrs) VALUES ('yehdnjo', 'Cura para ferimentos profundos', 2.0);
--- INSERT INTO NaturalMedicinesProperties (ElficReference, Effect, Duration_Hrs) VALUES ('mucud', 'Cura para ferimentos Leves', 1.3);
 
 SELECT items.name as Name, properties.Effect as effect, properties.Duration_Hrs
 FROM NaturalItems items INNER JOIN NaturalMedicinesProperties properties
  ON items.ElficReference = properties.ElficReference
 WHERE items.name = 'Erva do Rei'
 
-CREATE TEMPORARY TABLE X AS SELECT name, type FROM NaturalItems;
-SELECT * FROM X;
+CREATE TEMPORARY TABLE Test AS 
+SELECT items.name as Name, properties.Effect as effect, properties.Duration_Hrs
+FROM NaturalItems items INNER JOIN NaturalMedicinesProperties properties
+ON items.ElficReference = properties.ElficReference
+WHERE items.name = 'Erva do Rei';
+SELECT * FROM Test;
 
 ------------------------------------------------------------
 --- The Fellowship -----------
@@ -86,25 +84,23 @@ ALTER TABLE TheFellowship ADD Destiny varchar(30) ' ',  Mission varchar(30) ' '
 
 ------------------------------------------------------------
 --- Traverse Stopped By Saruman -----------
+CREATE TABLE PathsToMordor (name varchar(30), RevisionDate Date, Status string, isBlock int)
+
+INSERT INTO PathsToMordor (name, RevisionDate, Status, isBlock) VALUES ('Ice Mountains', NULL, 'Safe', NULL);
+INSERT INTO PathsToMordor (name, RevisionDate, Status, isBlock) VALUES ('Moria', Date('2017-09-03'), 'Safe', NULL);
+INSERT INTO PathsToMordor (name, RevisionDate, Status, isBlock) VALUES ('Minas Morgul', NULL, 'Dangerous', NULL);
 ------------------------------------------------------------
-
---CREATE TABLE Paths (name varchar(30), RevisionDate Date, Status string, isBlock int)
-SELECT * FROM Paths
--- DELETE FROM Paths
--- INSERT INTO Paths (name, RevisionDate, Status, isBlock) VALUES ('Mountains', NULL, 'Safe', NULL)
--- INSERT INTO Paths (name, RevisionDate, Status, isBlock) VALUES ('Moria', Date('2017-09-03'), 'Safe', NULL)
--- INSERT INTO Paths (name, RevisionDate, Status, isBlock) VALUES ('Forgot the  Name', NULL, 'Dangerous', NULL)
-
 
 
 
 
  ------------------------------------------------------------
 --- Durin -----------
+
+CREATE TABLE DurinsDoor (Status INT, Password VARCHAR(128) NULL)
 ------------------------------------------------------------
 
----CREATE TABLE DurinsDoor (Status INT, Password VARCHAR(128) NULL)
-drop table DurinsDoor
+---
 SELECT * FROM DurinsDoor
 INSERT INTO DurinsDoor (STATUS, Password) VALUES ('CLOSED', 'jibcdiuvd-jcjdbuvcyud-njbdu-xdcd')
 LIKE '%jibcdiuvd'
@@ -112,6 +108,6 @@ LIKE '%jibcdiuvd'
 
 
 ------------------------------------------------------------
---- Traverse Stopped By Saruman -----------
+--- Thurin-----------
 ------------------------------------------------------------
 
